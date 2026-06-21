@@ -1,13 +1,10 @@
 from dotenv import load_dotenv
-
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 
 from src.config import MODEL_NAME
-
 load_dotenv()
-
-
+from src.prompts import QUESTION_GENERATION_PROMPT
 def generate_questions(
     retriever,
     role,
@@ -28,38 +25,7 @@ def generate_questions(
     )
 
     prompt = ChatPromptTemplate.from_template(
-        """
-You are a senior technical interviewer.
-
-Candidate Resume:
-{context}
-
-Target Role:
-{role}
-
-Difficulty:
-{difficulty}
-
-Generate exactly 10 interview questions.
-
-Question Distribution:
-
-- 3 questions about candidate projects
-- 3 questions about role-specific concepts
-- 2 questions about core fundamentals
-- 2 scenario/problem-solving questions
-
-Rules:
-
-- Match the selected role strongly.
-- Match the selected difficulty.
-- Do not generate all questions from a single project.
-- Cover different skills from the resume.
-- Simulate a real technical interview.
-
-Return only numbered questions.
-
-"""
+        QUESTION_GENERATION_PROMPT
     )
 
     chain = prompt | llm

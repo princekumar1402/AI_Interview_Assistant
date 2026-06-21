@@ -1,20 +1,17 @@
 import streamlit as st
 import os
-
 from src.resume_parser import load_and_split_resume
 from src.resume_analyzer import (
     analyze_resume,
     review_resume,
     extract_resume_score
 )
-
 from src.vector_store import create_vector_store, get_retriever
 from src.report_generator import generate_report
 from src.interview_engine import (
     start_interview,
     process_answer
 )
-
 st.set_page_config(
     page_title="AI Interview Assistant",
     page_icon="🤖"
@@ -22,10 +19,7 @@ st.set_page_config(
 
 st.title("🤖 AI Interview Assistant")
 
-# -----------------------------
 # Role Selection
-# -----------------------------
-
 role = st.selectbox(
     "Select Interview Role",
     [
@@ -46,9 +40,8 @@ difficulty = st.selectbox(
     ]
 )
 
-# -----------------------------
 # Session State
-# -----------------------------
+
 if "interview_evaluated" not in st.session_state:
     st.session_state.interview_evaluated = False
 
@@ -81,10 +74,7 @@ if "final_report" not in st.session_state:
     st.session_state.final_report = ""
 
 
-
-# -----------------------------
 # Resume Upload
-# -----------------------------
 
 uploaded_file = st.file_uploader(
     "Upload Your Resume (PDF)",
@@ -103,9 +93,8 @@ if uploaded_file:
 
     st.success("Resume Uploaded Successfully!")
 
-    # -----------------------------
-    # Analyze Resume
-    # -----------------------------
+  
+# Analyze Resume
 
     if st.button("Analyze Resume"):
 
@@ -129,9 +118,7 @@ if uploaded_file:
 
         st.rerun()
 
-# -----------------------------
 # Show Resume Analysis
-# -----------------------------
 
 if st.session_state.resume_analyzed:
 
@@ -153,9 +140,7 @@ if st.session_state.resume_analyzed:
         st.session_state.resume_review
     )
 
-    # -----------------------------
-    # Start Interview
-    # -----------------------------
+# Start Interview
 
     if st.button("Start Interview"):
 
@@ -188,9 +173,7 @@ if st.session_state.resume_analyzed:
 
         st.rerun()
 
-# -----------------------------
 # Interview Section
-# -----------------------------
 
 if st.session_state.interview_started:
 
@@ -214,7 +197,7 @@ if st.session_state.interview_started:
 
             st.divider()
 
-    # Show Evaluation Button After 3 Answers
+ # Show Evaluation Button After 3 Answers
 
     if len(st.session_state.answers) >= 3:
 
@@ -249,7 +232,7 @@ if st.session_state.interview_started:
         st.session_state.final_report
     )
 
-    # Show Current Question
+# Show Current Question
 
     if current_idx < len(st.session_state.questions):
 

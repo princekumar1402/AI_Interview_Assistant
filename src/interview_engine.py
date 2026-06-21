@@ -1,7 +1,6 @@
 from src.question_generator import generate_questions
 from src.evaluator import evaluate_answer
 
-
 def start_interview(
     retriever,
     role,

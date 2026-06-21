@@ -8,14 +8,14 @@ Built using **Streamlit, LangChain, Groq, Hugging Face Embeddings, and FAISS**.
 
 ## 🚀 Live Demo
 
-Demo Link: ___________________________
+Demo Link:https://aiinterviewassistant-5rsyfflvjqrnrsjjepnwqk.streamlit.app/
 
 ---
 
 ## 📂 GitHub Repository
 
-Repository Link: ___________________________
-
+Repository Link: 
+https://github.com/princekumar1402/AI_Interview_Assistant.git
 ---
 
 ## 📌 Project Overview

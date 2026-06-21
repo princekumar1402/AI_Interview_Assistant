@@ -6,7 +6,6 @@ from src.config import MODEL_NAME
 from src.prompts import EVALUATION_PROMPT
 load_dotenv()
 
-
 def evaluate_answer(question, answer):
 
     llm = ChatGroq(
@@ -19,7 +18,6 @@ def evaluate_answer(question, answer):
     )
 
     chain = prompt | llm
-
     response = chain.invoke(
         {
             "question": question,
